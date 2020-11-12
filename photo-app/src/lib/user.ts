@@ -1,0 +1,31 @@
+import Album from './album'
+
+export default class User {
+  private album: Album[]
+
+  public constructor (
+    private id: number,
+    private username: string,
+    private firstName: string,
+    private isPro: boolean
+  ) {
+    this.album = []
+  }
+
+  public addAlbum (album: Album) {
+    this.album.push(album)
+  }
+
+  public removeAlbum (album: Album): Album | undefined  {
+    // Buscar album
+    const index = this.album.findIndex(a =>  a.id === album.id)
+    let deletedAlbum
+
+    if (index >= 0) {
+      deletedAlbum = this.album[index]
+      this.album.splice(index, 1)
+    }
+
+    return deletedAlbum
+  }
+}
